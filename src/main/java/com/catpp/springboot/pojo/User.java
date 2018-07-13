@@ -1,12 +1,19 @@
 package com.catpp.springboot.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.util.Date;
 
 public class User {
     private String username;
+    @JsonIgnore
     private String password;
     private Integer age;
+    @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date birthday;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String desc;
 
     public String getDesc() {
