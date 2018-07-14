@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>thymeleaf page</title>
+    <!--引入静态资源文件js/css-->
+    <!--<script th:src="@{/static/js/test.js}"></script>-->
+</head>
+<body>
+    <!--基本使用方式-->
+    <h1 th:text="${name}">thymeleaf模板引擎</h1>
+    <!--对象引用方式-->
+    <div>
+        用户名：<input th:id="${user.username}" th:name="${user.username}" th:value="${user.username}" />
+        用户年龄：<input th:value="${user.age}" />
+        用户生日：<input th:value="${user.birthday}" />
+    </div>
+    <br/><hr/>
+    <div th:object="${user}">
+        用户名：<input th:id="*{username}" th:name="*{username}" th:value="*{username}" />
+        用户年龄：<input th:value="*{age}" />
+        用户生日：<input th:value="*{birthday}" />
+    </div>
+    <br/><hr/>
+    <!--时间类型转换-->
+    <div>
+        格式化时间格式：<input th:value="${#dates.format(user.birthday, 'yyyy-MM-dd')}" />
+        <br/><hr/>
+    </div>
+    <!--text与utext-->
+    <div>
+        <span th:text="${user.desc}"></span>
+        <span th:utext="${user.desc}"></span>
+    </div>
+    <br/><hr/>
+    <!--URL-->
+    <div>
+        <a th:href="@{https://blog.csdn.net/cat_pp}" th:target="_blank">catpp</a>
+    </div>
+    <br/><hr/>
+    <!--form表单-->
+    <div>
+        <form th:action="@{/thymeleaf/form}" th:object="${user}" th:method="post">
+            <input type="text" th:field="*{username}" />
+            <input type="submit" value="submit" />
+        </form>
+    </div>
+    <!--条件判断-->
+    <div>
+        <span th:if="${user.age} == 19">19岁</span>
+        <span th:if="${user.age} gt 18">大于18岁</span>
+        <span th:if="${user.age} lt 18">小于18岁</span>
+        <span th:if="${user.age} ge 19">大于等于19岁</span>
+        <span th:if="${user.age} le 19">小于等于19岁</span>
+    </div>
+    <br/>
+    <div>
+        <select>
+            <option>请选择</option>
+            <option th:selected="${user.username eq 'testonename'}">测试名字</option>
+            <option th:selected="${user.username eq 'zhangsan'}">张三</option>
+            <option th:selected="${user.username eq 'lisi'}">李四</option>
+            <!--读取i8n配置文件-->
+            <option th:selected="#{roles.manager}">管理员</option>
+        </select>
+    </div>
+    <br/><hr/>
+    <!--th:switch与th:case-->
+    <div th:switch="${user.username}">
+        <p th:case="'testonename'">测试名字</p>
+        <p th:case="'zhangsan'">张三</p>
+        <p th:case="'lisi'">李四</p>
+    </div>
+    <!--循环-->
+    <table>
+        <tr>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>密码</th>
+            <th>生日</th>
+            <th>描述</th>
+        </tr>
+        <tr th:each="user:${list}">
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.age le 25} ? ${user.age} : 年龄大于25岁"></td>
+            <td th:text="${user.password}"></td>
+            <td th:text="${#dates.format(user.birthday, 'yyyy-MM-dd')}"></td>
+            <td th:text="${user.desc}"></td>
+        </tr>
+    </table>
+</body>
+</html>
