@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test ajax error page</title>
+    <script th:src="@{/static/js/jquery.min.js}"></script>
+</head>
+<body>
+<h1>这是ajax页面</h1>
+    <script>
+        $(function() {
+            $.ajax({
+                url : "/error/accessAjax",
+                type : 'post',
+                success : function(data) {
+                    if (data.status == 200) {
+                        alert(data.status + "ok");
+                    } else {
+                        alert(data.status + data.msg + "no");
+                    }
+                },
+                error : function() {
+                    alert(500);
+                }
+            });
+        })
+    </script>
+</body>
+</html>
