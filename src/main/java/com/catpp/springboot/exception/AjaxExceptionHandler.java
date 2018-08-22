@@ -1,8 +1,6 @@
 package com.catpp.springboot.exception;
 
-import com.catpp.springboot.pojo.JSONResult;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
+import com.catpp.springboot.pojo.JsonResult;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 public class AjaxExceptionHandler {
 
     //@ExceptionHandler(value = Exception.class)
-    public JSONResult exceptionHandler(HttpServletRequest request, Exception e) {
+    public JsonResult exceptionHandler(HttpServletRequest request, Exception e) {
         e.printStackTrace();
-        return JSONResult.errorException(e.getMessage());
+        return JsonResult.errorException(e.getMessage());
     }
 }

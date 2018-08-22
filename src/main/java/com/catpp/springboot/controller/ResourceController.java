@@ -1,6 +1,6 @@
 package com.catpp.springboot.controller;
 
-import com.catpp.springboot.pojo.JSONResult;
+import com.catpp.springboot.pojo.JsonResult;
 import com.catpp.springboot.pojo.Resource;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +17,9 @@ public class ResourceController {
 
     @RequestMapping("getResource")
     @ResponseBody
-    public JSONResult getResource() {
+    public JsonResult getResource() {
         Resource res = new Resource();
         BeanUtils.copyProperties(resource, res);
-        return new JSONResult(res);
+        return new JsonResult(res);
     }
 }

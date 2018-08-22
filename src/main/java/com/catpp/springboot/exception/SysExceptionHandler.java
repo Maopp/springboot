@@ -1,6 +1,6 @@
 package com.catpp.springboot.exception;
 
-import com.catpp.springboot.pojo.JSONResult;
+import com.catpp.springboot.pojo.JsonResult;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,7 +27,7 @@ public class SysExceptionHandler {
         e.printStackTrace();
         if (isAjax(request)) {
             // return response;// 返回response跟进源码瞅瞅
-            return JSONResult.errorException(e.getMessage());
+            return JsonResult.errorException(e.getMessage());
         } else {
             ModelAndView modelAndView = new ModelAndView();
             modelAndView.addObject("exception", e);

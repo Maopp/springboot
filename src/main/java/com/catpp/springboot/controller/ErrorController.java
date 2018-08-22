@@ -1,6 +1,6 @@
 package com.catpp.springboot.controller;
 
-import com.catpp.springboot.pojo.JSONResult;
+import com.catpp.springboot.pojo.JsonResult;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,8 +22,8 @@ public class ErrorController {
 
     @RequestMapping("/accessAjax")
     @ResponseBody
-    public JSONResult accessAjax() {
+    public JsonResult accessAjax() {
         int a = 1 / 0;
-        return new JSONResult();
+        return new JsonResult();
     }
 }
