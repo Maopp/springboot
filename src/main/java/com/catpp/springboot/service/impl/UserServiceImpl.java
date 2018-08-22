@@ -7,6 +7,8 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +35,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS)
     public Page<SysUser> searchPageList(SysUser sysUser, Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         List<SysUser> list = userMapper.select(sysUser);
@@ -45,6 +48,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED)
     public void update(SysUser sysUser) {
         userMapper.updateByPrimaryKey(sysUser);
     }
