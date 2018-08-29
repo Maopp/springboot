@@ -24,6 +24,39 @@
 		<java.version>1.8</java.version>
 	</properties>
 
+	<!--<profiles>
+		<profile>
+			<id>rd</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<resource.directory>src/main/resources/rd</resource.directory>
+				<session.timeout>1440</session.timeout>
+			</properties>
+		</profile>
+		<profile>
+			<id>qa</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<resource.directory>src/main/resources/qa</resource.directory>
+				<session.timeout>1440</session.timeout>
+			</properties>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<resource.directory>src/main/resources/prod</resource.directory>
+				<session.timeout>60</session.timeout>
+			</properties>
+		</profile>
+	</profiles>-->
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -121,11 +154,25 @@
 			<optional>true</optional>
 		</dependency>
 
+		<!--引入redis依赖-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>1.18.2</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.8</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
